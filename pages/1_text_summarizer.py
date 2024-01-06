@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 from langchain import OpenAI
 from langchain.docstore.document import Document
 from langchain.text_splitter import CharacterTextSplitter
@@ -28,7 +29,7 @@ txt_input = st.text_area('Enter your text', '', height=200)
 # Form to accept user's text input for summarization
 result = []
 with st.form('summarize_form', clear_on_submit=True):
-    openai_api_key = "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"
+    openai_api_key = os.environ["OPENAI_API_KEY"]
     submitted = st.form_submit_button('Submit')
     if submitted and openai_api_key.startswith('sk-'):
         with st.spinner('Calculating...'):
